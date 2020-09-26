@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Agendamentos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    
+    <ion-item *ngFor="let apt of listAppointments">
+      <ion-avatar slot="start">
+        <img [src]="apt.img">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{apt.barber}}</h2>
+        <h3>{{apt.service}}</h3>
+        <h3>{{apt.date}}</h3>
+        <h3>{{apt.time}}</h3>
+      </ion-label>
+    </ion-item>
+    
+    <!--
+      <ion-item *ngFor="let item of items">
+      <ion-icon [name]="item.icon" slot="start"></ion-icon>
+      {{item.title}}
+      <div class="item-note" slot="end">
+        {{item.barber}}
+      </div>
+      <div class="item-note" slot="end">-</div> Gambiarra
+      <div class="item-note" slot="end">
+        {{item.note}}
+      </div>
+    </ion-item> 
+  -->
+
+    
+  </ion-list>
+  <!--
+    <div *ngIf="selectedItem" padding>
+      You navigated here from <b>{{selectedItem.title }}</b>
+    </div>
+  -->
+</ion-content>

@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Serviços
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list lines="none">
+
+    <ion-list-header>
+      <ion-label>Serviços</ion-label>
+    </ion-list-header>
+    <!-- Colors -->
+
+    <ion-card-header>
+      <ion-card-subtitle>Montamos uma amostra dos serviços realizados na BarberShop,
+        nossos profissionais são capacitados e atuam em diversas áreas, confira.</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card class="welcome-card">
+      <ion-img src="/assets/images/barber_service_01.jpg"></ion-img>
+      <ion-card-header class="cor-card">
+        <ion-card-title>Barbas</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="cor-card">
+        <p>“Para os clientes que buscam aparar, cortar ou mudarem o estilo da barba.”</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="welcome-card">
+      <ion-img src="/assets/images/barber_service_03.jpg"></ion-img>
+      <ion-card-header class="cor-card">
+        <ion-card-title>Corte Masculino</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="cor-card">
+        <p>“Serviço é destinado ao corte de cabelo e para os clientes que
+          buscam cabelos mais modernos atualmente.”
+        </p>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="welcome-card">
+      <ion-img src="/assets/images/barber_service_06.jpg"></ion-img>
+      <ion-card-header class="cor-card">
+        <ion-card-title>Hidratação Capilar</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="cor-card">
+        <p>“Serviço clássico e completo, que compõe a barba feita e o corte de cabelo.”
+        </p>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card class="welcome-card">
+      <ion-img src="/assets/images/produtos_barbearia.jpg"></ion-img>
+      <ion-card-header class="cor-card">
+        <ion-card-title>Produtos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="cor-card">
+        <p>“A BarberShop também vende alguns produtos a parte que podem ser adquiridos. Estes produtos
+          são confeccionados por nós ou adquiridos em várias outras partes do mundo, promovendo os melhores
+          produtos aos nossos clientes.”
+        </p>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-button [routerLink]="['/login']" color="danger" expand="full">Agende seu Horário</ion-button>
+
+  </ion-list>
+
+</ion-content>

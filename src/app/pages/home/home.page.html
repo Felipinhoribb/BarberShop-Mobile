@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-img src="/assets/images/barber_slider.jpg"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>Sobre</ion-card-subtitle>
+      <ion-card-title>Bem-Vindo a BarberShop</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>A BarberShop é uma barbearia versátil com bom custo benefício
+        para atender clientes que procuram cuidar do visual.</p>
+      <p> A BarberShop surgiu em 1989, pelos criadores Leandro Reis e ajuda de Gustavo Oliveira,
+        e Allan Felipe, localizado na rua Pomba Branca, nº 445, Padre Eustáquio.</p>
+      <p>A barbearia conta com boa estrutura para nossos clientes, profissionais capacitados,
+        que realizam os melhores cortes de cabelo, barba e entre outros serviços. </p>
+      <ion-button [routerLink]="['/about']" color="danger" expand="full">Saiba mais</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>Equipe The Barber’s</ion-label>
+    </ion-list-header>
+    <!-- Colors -->
+
+
+    <ion-card-header>
+      <ion-card-subtitle>A equipe "The Barber's" são os principais membros da BarberShop,
+        são eles que fazem a mágica acontecer, responsáveis por garantir o visual formidável
+        de nossos clientes. Venha fazer parte desta equipe.</ion-card-subtitle>
+    </ion-card-header>
+
+
+
+
+    <ion-card class="welcome-card">
+      <ion-img src="/assets/images/barber_team_04.jpg"></ion-img>
+      <ion-card-header>
+        <ion-card-title>James Harden</ion-card-title>
+        <p>Fundador & Barbeiro</p>
+      </ion-card-header>
+      <ion-card-content>
+        <p>“Olá pessoal, eu sou James Harden. Sou diretor de arte sênior e
+          fundador da BarberShop”
+        </p>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="welcome-card">
+      <ion-img src="/assets/images/barber_team_05.jpg"></ion-img>
+      <ion-card-header>
+        <ion-card-title>Kyrie Irving</ion-card-title>
+        <p>Barbeiro</p>
+      </ion-card-header>
+      <ion-card-content>
+        <p>“Olá pessoal, eu sou Kyrie Irving. Sou barbeiro e estilista, e trago os melhores cortes
+          dos Estados Unidos, Let's do it.”
+        </p>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="welcome-card">
+      <ion-img src="/assets/images/barber_team_07.jpg"></ion-img>
+      <ion-card-header>
+        <ion-card-title>Allan Felipe</ion-card-title>
+        <p>Barbeiro</p>
+      </ion-card-header>
+      <ion-card-content>
+        <p>“Fala galera, eu sou Alan Felipe. Sou o mais novo por aqui, 
+          especialista quando o assunto é estilo e inovação, venha nos fazer uma visita.”
+        </p>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-button [routerLink]="['/login']" color="danger" expand="full">Agende seu Horário</ion-button>
+
+  </ion-list>
+
+</ion-content>
