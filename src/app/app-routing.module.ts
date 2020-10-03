@@ -9,6 +9,7 @@ import { LoginPage } from './pages/login/login.page';
 import { ServicesPage } from './pages/services/services.page';
 import { ContactPage } from './pages/contact/contact.page';
 import { BarbersPage } from './pages/barbers/barbers.page'
+import { DetailsPage } from './pages/details/details.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'login', component: LoginPage },
   { path: 'services', component: ServicesPage},
   { path: 'contact', component: ContactPage },
-  { path: 'barbers', component: BarbersPage }
+  { path: 'barbers', component: BarbersPage },
+  { path: 'details', component: DetailsPage }
 ];
 
 @NgModule({
