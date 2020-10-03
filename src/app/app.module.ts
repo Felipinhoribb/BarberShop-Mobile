@@ -18,6 +18,7 @@ import { LoginPage } from './pages/login/login.page'
 import { ServicesPage } from './pages/services/services.page'
 import { ContactPage } from './pages/contact/contact.page'
 import { BarbersPage } from './pages/barbers/barbers.page'
+import { DetailsPage } from './pages/details/details.page'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BarbersPage } from './pages/barbers/barbers.page'
     LoginPage,
     ServicesPage,
     ContactPage,
-    BarbersPage
+    BarbersPage,
+    DetailsPage
   ],
 
   entryComponents: [ 
@@ -41,7 +43,8 @@ import { BarbersPage } from './pages/barbers/barbers.page'
     LoginPage,
     ServicesPage,
     ContactPage,
-    BarbersPage
+    BarbersPage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
