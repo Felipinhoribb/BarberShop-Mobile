@@ -34,12 +34,14 @@
         <ion-input type="password"></ion-input>
       </ion-item>
 
+      <ion-card-content>
+        <a [routerLink]="['/register']">Não tem uma conta? Cadastre-se</a>
+      </ion-card-content>
+
     </ion-card-content>
 
   </ion-card>
 
-  <ion-button class="botaoredondo" color="primary" expand="block">Entrar</ion-button>
+  <ion-button color="danger" expand="full">Entrar</ion-button>
   
-  <ion-card-subtitle class="alinhadocentro">Não tem uma conta? Cadastre-se</ion-card-subtitle>
-
 </ion-content>

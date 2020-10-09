@@ -24,7 +24,7 @@
     </ion-card-header>
 
     <ion-card class="welcome-card" *ngFor="let barber of listBarbers">
-      <a [routerLink]="['/details']">
+      <a routerLink="/details/{{barber.idBarber}}">
         <ion-img [src]="barber.img"></ion-img>
       </a>
       <ion-card-header>

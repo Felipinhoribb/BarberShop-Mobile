@@ -10,6 +10,7 @@ import { ServicesPage } from './pages/services/services.page';
 import { ContactPage } from './pages/contact/contact.page';
 import { BarbersPage } from './pages/barbers/barbers.page'
 import { DetailsPage } from './pages/details/details.page';
+import { RegisterPage } from './pages/register/register.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'services', component: ServicesPage},
   { path: 'contact', component: ContactPage },
   { path: 'barbers', component: BarbersPage },
-  { path: 'details', component: DetailsPage }
+  { path: 'details/:id', component: DetailsPage },
+  { path: 'register', component: RegisterPage }
 ];
 
 @NgModule({

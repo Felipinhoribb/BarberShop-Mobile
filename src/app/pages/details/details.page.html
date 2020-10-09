@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
       Barbeiros
@@ -11,21 +11,47 @@
 
 <ion-content>
 
-    <ion-card class="welcome-card" *ngFor="let barber of listBarbers">
-      <ion-avatar slot="start">
-        <img [src]="barber.img">
-      </ion-avatar>
-      <ion-card-header>
-        <ion-card-title>{{barber.name}}</ion-card-title>
-        <p>{{barber.occupation}}</p>
-      </ion-card-header>
-      <ion-card-content>
-        <p>{{barber.description}}</p>
+  <ion-card class="welcome-card">
+    <ion-avatar slot="start">
+      <img [src]="barber.img">
+    </ion-avatar>
+    <ion-card-header>
+      <ion-card-title>{{barber.name}}</ion-card-title>
+      <p>{{barber.occupation}}</p>
+      <p>Idade: {{barber.age}} anos</p>
+    </ion-card-header>
 
-      </ion-card-content>
+    <ion-card-content>
+      <p>{{barber.description}}</p>
+    </ion-card-content>
+    <ion-card-content>
+      <p>{{barber.history}}</p>
+    </ion-card-content>
 
-      <ion-button [routerLink]="['/login']" color="danger" expand="full">Agende seu Horário com {{barber.name}}</ion-button>
+    <ion-card-content>
+      <ion-item>
+        <ion-icon slot="start" color="primary" name="ios-briefcase"></ion-icon>
+        <ion-label class="ion-text-wrap">{{barber.graduation}}</ion-label>
+      </ion-item>
+    </ion-card-content>
 
-    </ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-icon slot="start" color="primary" name="ios-pin"></ion-icon>
+        <ion-label class="ion-text-wrap">{{barber.location}}</ion-label>
+      </ion-item>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-button color="dark" expand="full">Cortes de Cabelo: R$ {{barber.hair}},00</ion-button>
+      <ion-button color="dark" expand="full">Barba: R$ {{barber.barber}},00</ion-button>
+      <ion-button color="dark" expand="full">Outros Serviços: R$ {{barber.other_service}},00</ion-button>
+    </ion-card-content>
+    
+
+    <ion-button [routerLink]="['/login']" color="danger" expand="full">Agende seu Horário com {{barber.name}}
+    </ion-button>
+
+  </ion-card>
 
 </ion-content>
