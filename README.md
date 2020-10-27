@@ -36,4 +36,4 @@ Ionic.
 
 * **Luis Felipe**
 
-O projeto foi desenvolvido juntamente com [Danilo Muniz](https://github.com/your/project/contributors) que contribuiu com o projeto.
+O projeto foi desenvolvido juntamente com [Danilo Muniz](https://github.com/danilo-muniz) que contribuiu com o projeto.
