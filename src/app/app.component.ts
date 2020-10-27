@@ -13,6 +13,7 @@ import { ServicesPage } from './pages/services/services.page'
 import { ContactPage } from './pages/contact/contact.page'
 import { BarbersPage } from './pages/barbers/barbers.page'
   import { from } from 'rxjs';
+import { AppointmentPage } from './pages/appointment/appointment.page';
 
 @Component({
   selector: 'app-root',
@@ -52,27 +53,21 @@ export class AppComponent {
       title: 'Serviços',
       component: ServicesPage,
       url: '/services',
-      icon: 'ios-bowtie' //ou calendar
+      icon: 'ios-bowtie'
     },
 
     {
       title: 'Barbeiros',
       component: BarbersPage,
       url: '/barbers',
-      icon: 'ios-bowtie' //ou calendar
-    },
-
-    {
-      title: 'Agendar Horário',
-      url: '/appointment',
-      icon: 'checkmark-circle' //ou calendar
+      icon: 'ios-bowtie' 
     },
 
     {
       title: 'Agendamentos',
       component: ListPage,
       url: '/list',
-      icon: 'list'
+      icon: 'checkmark-circle'
     },
 
     {

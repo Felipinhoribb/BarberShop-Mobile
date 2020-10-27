@@ -2,6 +2,7 @@ import { TodoModalComponent } from './pages/todo-modal/todo-modal.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -20,6 +21,7 @@ import { ContactPage } from './pages/contact/contact.page'
 import { BarbersPage } from './pages/barbers/barbers.page'
 import { DetailsPage } from './pages/details/details.page'
 import { RegisterPage } from './pages/register/register.page'
+import { AppointmentPage } from './pages/appointment/appointment.page'
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { RegisterPage } from './pages/register/register.page'
     ContactPage,
     BarbersPage,
     DetailsPage,
-    RegisterPage
+    RegisterPage,
+    AppointmentPage
   ],
 
   entryComponents: [ 
@@ -47,14 +50,14 @@ import { RegisterPage } from './pages/register/register.page'
     ContactPage,
     BarbersPage,
     DetailsPage,
-    RegisterPage
+    RegisterPage,
+    AppointmentPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-   
-
+    FormsModule
   ],
   providers: [
     StatusBar,

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServicesService } from 'src/app/service/services.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,13 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  private listServices = [];
 
-  segmentChanged($event){
-    
+  constructor(private serviceServices : ServicesService) {
+    this.listServices = this.serviceServices.getListService();
+  }
+
+  ngOnInit() {
   }
 
 }

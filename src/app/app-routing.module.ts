@@ -11,6 +11,7 @@ import { ContactPage } from './pages/contact/contact.page';
 import { BarbersPage } from './pages/barbers/barbers.page'
 import { DetailsPage } from './pages/details/details.page';
 import { RegisterPage } from './pages/register/register.page';
+import { AppointmentPage } from './pages/appointment/appointment.page'
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'contact', component: ContactPage },
   { path: 'barbers', component: BarbersPage },
   { path: 'details/:id', component: DetailsPage },
-  { path: 'register', component: RegisterPage }
+  { path: 'register', component: RegisterPage },
+  { path: 'appointment/:id', component: AppointmentPage }
 ];
 
 @NgModule({

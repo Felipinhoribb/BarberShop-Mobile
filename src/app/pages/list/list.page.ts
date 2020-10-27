@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {  } from '../barbers/barbers.module'
+import { AppointmentService } from 'src/app/service/appointment.service';
+import { Appointment } from 'src/app/models/appointment.model';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-list',
@@ -7,58 +10,45 @@ import {  } from '../barbers/barbers.module'
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  
-  private listAppointments = [
 
-    {
-      idAppointment: 1,
-      barber: 'Kyrie Irving',
-      img: '/assets/images/barber_team_05.jpg',
-      service: 'Corte de Cabelo & Barba',
-      date: '18/09/2020',
-      time: '10:00',
-      state: 'Success'
-    },
+  private listAppointments = []
 
-    {
-      idAppointment: 2,
-      barber: 'James Hardem',
-      img: '/assets/images/barber_team_04.jpg',
-      service: 'Barba',
-      date: '11/09/2020',
-      time: '16:00',
-      state: 'Danger'
-    },
+  private appointment : Appointment = null;
 
-    {
-      idAppointment: 3,
-      barber: 'João Carlos',
-      img: '/assets/images/barber_team_06.jpg',
-      service: 'Pintura Capilar',
-      date: '03/09/2020',
-      time: '09:00',
-      state: 'Danger'
-    },
-
-    {
-      idAppointment: 4,
-      barber: 'William Barbosa',
-      img: '/assets/images/barber_team_01.jpg',
-      service: 'Corte de Cabelo',
-      date: '30/09/2020',
-      time: '13:30',
-      state: 'Success'
-    }
-  ]
-
-  constructor() {
-    
+  constructor(private alert : AlertController,
+              private serviceAppointments : AppointmentService) {
+    this.listAppointments = serviceAppointments.getListAppointments();
   }
 
   ngOnInit() {
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+  deleteAppointment(id : number) {
+    this.serviceAppointments.deleteAppointment(id); //this.appointment.idAppointment
+  }
+
+  async deleteAlert(id: number) {
+    const alert = await this.alert.create({
+      cssClass: 'my-custom-class',
+      header: 'Apagar',
+      message: 'Deseja realmente remover o serviço agendado?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            //console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Confirmar',
+          handler: () => {
+            this.deleteAppointment(id);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }

@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Agendamento
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card style="border-radius:5px 5px 0px 0px;">
+
+    <ion-card-header color="danger">
+      <ion-card-title>Agendar Horário</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item color="black">
+        <ion-label position="stacked">Profissional</ion-label>
+
+        <!--[(ngModel)]="objAppointment.idBarber"-->
+        <ion-select [(ngModel)]="objAppointment.idBarber" ok-text="Confirmar" cancel-text="Cancelar"
+          (ionChange)="setAvatar($event)" placeholder="Selecione a Barbeiro">
+          <ion-select-option *ngFor="let barber of listBarbers" [value]="barber.idBarber">{{barber.name}}
+          </ion-select-option>
+        </ion-select>
+        <ion-avatar slot="start">
+          <img [src]='barberAvatar'>
+        </ion-avatar>
+      </ion-item>
+
+      <!--[(ngModel)]="objAppointment.date"-->
+      <ion-item color="black">
+        <ion-label position="stacked">Data</ion-label>
+        <ion-icon slot="start" name="ios-calendar"></ion-icon>
+        <ion-datetime [(ngModel)]="objAppointment.date" display-format="DD/MMMM/YYYY"
+          min="2020-01-01" max="2020-12-31" placeholder="Selecione a Data" cancel-text="Cancelar" done-text="Confirmar">
+        </ion-datetime>
+      </ion-item>
+
+      <!--[(ngModel)]="objAppointment.time"-->
+      <ion-item color="black">
+        <ion-label position="stacked">Horário</ion-label>
+        <ion-icon slot="start" name="ios-time"></ion-icon>
+        <ion-datetime [(ngModel)]="objAppointment.time" display-format="HH:mm" minute-values="0,15,30,45"
+          placeholder="Selecione a Horário" cancel-text="Cancelar" done-text="Confirmar"></ion-datetime>
+      </ion-item>
+
+      <!--[(ngModel)]="objAppointment.idService"-->
+      <ion-item color="black">
+        <ion-label position="stacked">Serviços</ion-label>
+        <ion-icon slot="start" name="ios-cut"></ion-icon>
+        <ion-select [(ngModel)]="objAppointment.idService" ok-text="Confirmar" cancel-text="Cancelar"
+          placeholder="Selecione o Serviço">
+          <ion-select-option *ngFor="let service of listServices" value="{{service.idService}}">{{service.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-card-content>
+
+    <ion-button color="danger" expand="full" (click)="agendar()">Agendar</ion-button>
+
+  </ion-card>
+
+</ion-content>
