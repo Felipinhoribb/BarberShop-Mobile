@@ -59,10 +59,16 @@ export class AppointmentService {
     this.listAppointments.push(appointment);
   }
 
-  editAppointment(id : number) {
+  editAppointment(id: Number, apt : Appointment) {
     for(const appointment of this.listAppointments) {
       if(appointment.idAppointment === id) {
-        return appointment;
+        appointment.idBarber = apt.idBarber;
+        appointment.idService = apt.idService;
+        appointment.barber = apt.barber;
+        appointment.img = apt.img;
+        appointment.service = apt.service;
+        appointment.date = apt.date;
+        appointment.time = apt.time;
       }
     }
   }

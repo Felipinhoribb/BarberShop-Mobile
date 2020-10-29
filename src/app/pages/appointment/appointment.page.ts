@@ -7,7 +7,7 @@ import { Appointment } from 'src/app/models/appointment.model';
 import { AppointmentService } from 'src/app/service/appointment.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
-//import * as moment from 'moment';
+import * as moment from 'moment';
 import { Service } from 'src/app/models/services.model';
 
 @Component({
@@ -57,14 +57,14 @@ export class AppointmentPage implements OnInit {
 
     if (this.idEdit != -1) {
       this.objAppointment = {
-        idAppointment: appointmentService.editAppointment(this.idEdit).idAppointment,
-        idBarber: appointmentService.editAppointment(this.idEdit).idBarber,
-        idService: appointmentService.editAppointment(this.idEdit).idService,
-        barber: appointmentService.editAppointment(this.idEdit).barber,
-        img: appointmentService.editAppointment(this.idEdit).img,
-        service: appointmentService.editAppointment(this.idEdit).service,
-        date: appointmentService.editAppointment(this.idEdit).date,
-        time: appointmentService.editAppointment(this.idEdit).time
+        idAppointment: appointmentService.getAppointmentById(this.idEdit).idAppointment,
+        idBarber: appointmentService.getAppointmentById(this.idEdit).idBarber,
+        idService: appointmentService.getAppointmentById(this.idEdit).idService,
+        barber: appointmentService.getAppointmentById(this.idEdit).barber,
+        img: appointmentService.getAppointmentById(this.idEdit).img,
+        service: appointmentService.getAppointmentById(this.idEdit).service,
+        date: appointmentService.getAppointmentById(this.idEdit).date,
+        time: appointmentService.getAppointmentById(this.idEdit).time
       };
 
       this.barberAvatar = this.objAppointment.img;
@@ -97,19 +97,34 @@ export class AppointmentPage implements OnInit {
   }
 
   agendar() {
-    this.objAppointment.idAppointment = this.appointmentService.getListAppointments().length + 1;
-    this.barber = this.getBarber(this.objAppointment.idBarber);
-    this.objAppointment.service = this.getService(this.objAppointment.idService);
 
-    this.objAppointment.barber = this.barber.name;
-    this.objAppointment.img = this.barber.img;
+    if (this.idEdit != -1) {
+      this.barber = this.getBarber(this.objAppointment.idBarber);
+      this.objAppointment.service = this.getService(this.objAppointment.idService);
 
-    this.objAppointment.date = this.objAppointment.date;//moment(this.objAppointment.date).format('DD/MM/YYYY');
-    this.objAppointment.time = this.objAppointment.time;//moment(this.objAppointment.time).format("HH:mm");
+      this.objAppointment.barber = this.barber.name;
+      this.objAppointment.img = this.barber.img;
 
-    console.log('Appointment', this.objAppointment);
-    this.appointmentService.addAppointment(this.objAppointment);
-    this.router.navigateByUrl('/list');
+      this.objAppointment.date = moment(this.objAppointment.date).format('DD/MM/YYYY');
+      //this.objAppointment.time = moment(this.objAppointment.time).format("HH:mm");
+
+      this.appointmentService.editAppointment(this.objAppointment.idAppointment, this.objAppointment);
+      this.router.navigateByUrl('/list');
+
+    } else {
+      this.objAppointment.idAppointment = this.appointmentService.getListAppointments().length + 1;
+      this.barber = this.getBarber(this.objAppointment.idBarber);
+      this.objAppointment.service = this.getService(this.objAppointment.idService);
+
+      this.objAppointment.barber = this.barber.name;
+      this.objAppointment.img = this.barber.img;
+
+      this.objAppointment.date = moment(this.objAppointment.date).format('DD/MM/YYYY');
+      this.objAppointment.time = moment(this.objAppointment.time).format("HH:mm");
+
+      this.appointmentService.addAppointment(this.objAppointment);
+      this.router.navigateByUrl('/list');
+    }
   }
 
   getBarber(id: number): Barber {
