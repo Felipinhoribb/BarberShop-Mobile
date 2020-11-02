@@ -126,7 +126,9 @@ export class BarbersService {
     },
   ];
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   getBarberById(id: number) {          //Método que obtém o objeto pelo id do Barbeiro e retorna o objeto encontrado.
     for (const barber of this.listBarbers) {

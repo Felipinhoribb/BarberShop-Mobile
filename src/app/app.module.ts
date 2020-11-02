@@ -11,6 +11,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { AuthGuardService } from './guards/auth-guard.service'
+
+import { AngularFireModule } from '@angular/fire'
+import { AngularFirestoreModule } from '@angular/fire/firestore'
+import { AngularFireAuthModule } from '@angular/fire/auth'
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard'
+import { firebaseconfig } from './credentials/credentials'
+
 import { HomePage } from './pages/home/home.page'
 import { ListPage } from './pages/list/list.page'
 import { MessengerPage } from './pages/messenger/messenger.page'
@@ -22,6 +30,8 @@ import { BarbersPage } from './pages/barbers/barbers.page'
 import { DetailsPage } from './pages/details/details.page'
 import { RegisterPage } from './pages/register/register.page'
 import { AppointmentPage } from './pages/appointment/appointment.page'
+import { from } from 'rxjs';
+import { DashboardPage } from './pages/dashboard/dashboard.page';
 
 @NgModule({
   declarations: [
@@ -35,8 +45,9 @@ import { AppointmentPage } from './pages/appointment/appointment.page'
     ContactPage,
     BarbersPage,
     DetailsPage,
-    RegisterPage,
-    AppointmentPage
+    RegisterPage, 
+    AppointmentPage,
+    DashboardPage
   ],
 
   entryComponents: [ 
@@ -51,18 +62,23 @@ import { AppointmentPage } from './pages/appointment/appointment.page'
     BarbersPage,
     DetailsPage,
     RegisterPage,
-    AppointmentPage
+    AppointmentPage,
+    DashboardPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseconfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AngularFireAuthGuard
   ],
   bootstrap: [AppComponent]
 })

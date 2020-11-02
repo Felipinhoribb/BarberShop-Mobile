@@ -14,6 +14,8 @@ import { ContactPage } from './pages/contact/contact.page'
 import { BarbersPage } from './pages/barbers/barbers.page'
   import { from } from 'rxjs';
 import { AppointmentPage } from './pages/appointment/appointment.page';
+import { AuthGuardService } from './guards/auth-guard.service';
+import { DashboardPage } from './pages/dashboard/dashboard.page';
 
 @Component({
   selector: 'app-root',
@@ -67,12 +69,13 @@ export class AppComponent {
       title: 'Agendamentos',
       component: ListPage,
       url: '/list',
-      icon: 'checkmark-circle'
+      icon: 'checkmark-circle',
     },
 
     {
       title: 'Relatórios',
-      //component: dashboard,
+      component: DashboardPage,
+      url: '/dashboard',
       icon: 'stats'
     },
 
@@ -92,6 +95,7 @@ export class AppComponent {
 
     {
       title: 'Sair',
+      url: '/login',
       icon: 'close-circle'
     }
   ];
