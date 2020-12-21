@@ -2,7 +2,7 @@ import { TodoModalComponent } from './pages/todo-modal/todo-modal.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -32,6 +32,7 @@ import { RegisterPage } from './pages/register/register.page'
 import { AppointmentPage } from './pages/appointment/appointment.page'
 import { from } from 'rxjs';
 import { DashboardPage } from './pages/dashboard/dashboard.page';
+import { ProfilePage } from './pages/profile/profile.page'
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { DashboardPage } from './pages/dashboard/dashboard.page';
     DetailsPage,
     RegisterPage, 
     AppointmentPage,
-    DashboardPage
+    DashboardPage,
+    ProfilePage
   ],
 
   entryComponents: [ 
@@ -63,13 +65,15 @@ import { DashboardPage } from './pages/dashboard/dashboard.page';
     DetailsPage,
     RegisterPage,
     AppointmentPage,
-    DashboardPage
+    DashboardPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseconfig),
     AngularFirestoreModule,
     AngularFireAuthModule

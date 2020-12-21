@@ -8,48 +8,77 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-card>
-    <ion-card-header color="danger">
-      <ion-card-title>Registre-se</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-label position="floating">Nome de Usuário</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Senha</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Confirmação de Senha</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Confirmação de Email</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Celular</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Apelido</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Data de Nascimento</ion-label>
-          <ion-icon slot="start" name="ios-calendar"></ion-icon>
-          <ion-datetime display-format="DD/MMMM/YYYY" value="14/05/1997" min="1940-01-01" max="2012-01-01" placeholder="Selecione a Data de Nascimento"></ion-datetime>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-    <ion-button color="danger" expand="full">Criar Conta</ion-button>
-  </ion-card>
+
+  <form #form=ngForm [formGroup]="userForm" (submit)="register()">
+    <ion-card>
+      <ion-card-header color="danger">
+        <ion-card-title>Registre-se</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+
+          <ion-item>
+            <ion-label position="floating">Nome Completo</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+            <small class="error-message"
+              *ngIf="(userForm.get('name').errors?.required || userForm.get('name').errors?.minlength || userForm.get('name').errors?.maxlength) && form.submitted">
+              Por favor, informe o nome completo!
+            </small>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Nome de Usuário</ion-label>
+            <ion-input type="text" formControlName="nickname"></ion-input>
+            <small class="error-message"
+              *ngIf="(userForm.get('nickname').errors?.required || userForm.get('nickname').errors?.minlength || userForm.get('nickname').errors?.maxlength) && form.submitted">
+              Por favor, informe um apelido!
+            </small>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+            <small class="error-message"
+              *ngIf="(userForm.get('password').errors?.required || userForm.get('password').errors?.minlength || userForm.get('password').errors?.maxlength) && form.submitted">
+              Por favor, informe a senha!
+            </small>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" formControlName="email"></ion-input>
+            <small class="error-message"
+              *ngIf="(userForm.get('email').errors?.required || userForm.get('email').errors?.email) && form.submitted">
+              Por favor, informe o email!
+            </small>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Celular</ion-label>
+            <ion-input type="tel" formControlName="celular"></ion-input>
+            <small class="error-message" *ngIf="(userForm.get('celular').errors?.required) && form.submitted">
+              Por favor, informe o celular!
+            </small>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Data de Nascimento</ion-label>
+            <ion-icon slot="start" name="ios-calendar"></ion-icon>
+            <ion-datetime display-format="DD/MM/YYYY" placeholder="Selecione a Data de Nascimento"
+              formControlName="birthday"></ion-datetime>
+            <small class="error-message" *ngIf="(userForm.get('birthday').errors?.required) && form.submitted">
+              Por favor, Selecione a data de nascimento!
+            </small>
+          </ion-item>
+
+        </ion-list>
+
+      </ion-card-content>
+
+      <ion-button type="submit" color="danger" expand="full">Criar Conta</ion-button>
+    </ion-card>
+  </form>
 
 </ion-content>

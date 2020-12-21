@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/service/authentication.service';
+import { NavController } from '@ionic/angular'
 
+import { ReactiveFormsModule,FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { AlertController } from '@ionic/angular';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +14,28 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  public email: string = ''
-  public password: string = ''
+  // public email: string = '';
+  // public password: string = '';
+  public logMenu: boolean = false;
+
+  loginForm : FormGroup;
 
   constructor(private authentication: AuthenticationService,
     private router: Router,
-    private alert: AlertController) {
+    private alert: AlertController,
+    private formBuilder: FormBuilder,
+    private nav: NavController) {
+  }
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(15)])]
+    });
+  }
+
+  ionViewWillEnter() {
+    this.authentication.mostrarMenu.emit(false);
     this.authentication.signOut().then(() => {
       this.authentication.setUserLog(false);
     }).catch((erro) => {
@@ -24,18 +43,23 @@ export class LoginPage implements OnInit {
     })
   }
 
-  ngOnInit() {
-  }
-
   login() {
-    this.authentication.signIn(this.email, this.password).then((data) => {
+    
+
+    const dataFormLog = this.loginForm.value
+    
+    this.authentication.signIn(dataFormLog.email, dataFormLog.password).then((data) => {
 
       this.authentication.setUserLog(true);
+      this.logMenu = true;
 
       this.router.navigate(['/list']);
+
+      //this.nav.navigateRoot('/list');
+
     }).catch((erro) => {
-      if (this.email == '' && this.password == '') {
-        this.isEmpty();
+      if (this.loginForm.invalid || this.loginForm.pending) {
+        return;
       } else {
         console.log('Erro ao realizar Login: ' + erro);
         this.SignInFailed();
@@ -67,24 +91,8 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  async isEmpty() {
-    const alert = await this.alert.create({
-      cssClass: 'my-custom-class',
-      header: 'Login',
-      message: 'Os campos Login e Senha devem ser preenchidos!',
-      buttons: [
-        {
-          text: 'OK',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            //console.log('Confirm: blah');
-          }
-        }
-      ]
-    });
-
-    await alert.present();
+  showMenu() {
+    return this.logMenu;
   }
 
 }

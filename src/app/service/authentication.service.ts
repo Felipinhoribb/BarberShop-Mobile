@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
-import { AngularFireAuth } from '@angular/fire/auth'
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +8,21 @@ import { AngularFireAuth } from '@angular/fire/auth'
 export class AuthenticationService {
 
   private userLog : boolean = false;
+  public mostrarMenu = new EventEmitter<boolean>();
+
 
   constructor(private fireAuth: AngularFireAuth) { }
 
   signIn(email: string, password: string) {
-    return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
+    return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(()=>{
+      this.mostrarMenu.emit(true);
+    })
   }
 
   signOut() {
-    return this.fireAuth.auth.signOut();
+    return this.fireAuth.auth.signOut().then(()=>{
+      this.mostrarMenu.emit(false);
+    });
   }
 
   isUserLog() {

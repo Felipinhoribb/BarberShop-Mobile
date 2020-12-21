@@ -16,6 +16,8 @@ import { BarbersPage } from './pages/barbers/barbers.page'
 import { AppointmentPage } from './pages/appointment/appointment.page';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { DashboardPage } from './pages/dashboard/dashboard.page';
+import { AuthenticationService } from './service/authentication.service'
+import { ProfilePage } from './pages/profile/profile.page';
 
 @Component({
   selector: 'app-root',
@@ -27,42 +29,48 @@ export class AppComponent {
       title: 'Home',
       component: HomePage,
       url: '/home',
-      icon: 'home'
+      icon: 'home',
+      visible: true
     },
 
-    /*{
+    {
       title: 'Perfil',
-      component: HomePage,
-      url: '/home',
-      icon: 'contact'
-    },*/
+      component: ProfilePage,
+      url: '/profile',
+      icon: 'contact',
+      visible: false
+    },
 
     {
       title: 'Login',
       component: LoginPage,
       url: '/login',
-      icon: 'ios-contact'
+      icon: 'ios-contact',
+      visible: true
     },
 
     {
       title: 'Sobre nós',
       component: SingleImageViewPage,
       url: '/about',
-      icon: 'list-box'
+      icon: 'list-box',
+      visible: true
     },
 
     {
       title: 'Serviços',
       component: ServicesPage,
       url: '/services',
-      icon: 'ios-bowtie'
+      icon: 'ios-cut',
+      visible: true
     },
 
     {
       title: 'Barbeiros',
       component: BarbersPage,
       url: '/barbers',
-      icon: 'ios-bowtie' 
+      icon: 'ios-bowtie',
+      visible: true
     },
 
     {
@@ -70,42 +78,53 @@ export class AppComponent {
       component: ListPage,
       url: '/list',
       icon: 'checkmark-circle',
+      visible: false
     },
 
     {
       title: 'Relatórios',
       component: DashboardPage,
       url: '/dashboard',
-      icon: 'stats'
+      icon: 'stats',
+      visible: false
     },
 
     {
       title: 'Mensagens',
       component: MessengerPage,
       url: '/messenger',
-      icon: 'chatboxes'
+      icon: 'chatboxes',
+      visible: false
     },
 
     {
       title: 'Contato',
       component: ContactPage,
       url: '/contact',
-      icon: 'ios-at'
+      icon: 'ios-at',
+      visible: true
     },
 
     {
       title: 'Sair',
       url: '/login',
-      icon: 'close-circle'
+      icon: 'close-circle',
+      visible: false
     }
   ];
+
+  public exibir : boolean = false;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private menu: AuthenticationService
   ) {
     this.initializeApp();
+    this.menu.mostrarMenu.subscribe((resposta)=>{
+      this.exibir = resposta;
+    })
   }
 
   initializeApp() {

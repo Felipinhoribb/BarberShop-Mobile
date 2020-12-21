@@ -14,6 +14,7 @@ import { RegisterPage } from './pages/register/register.page';
 import { AppointmentPage } from './pages/appointment/appointment.page'
 import { AuthGuardService } from './guards/auth-guard.service';
 import { DashboardPage } from './pages/dashboard/dashboard.page';
+import { ProfilePage } from './pages/profile/profile.page'
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'details/:id', component: DetailsPage },
   { path: 'register', component: RegisterPage },
   { path: 'appointment/:id', component: AppointmentPage, canActivate: [AuthGuardService]},
-  { path: 'dashboard', component: DashboardPage, canActivate: [AuthGuardService]}
+  { path: 'dashboard', component: DashboardPage, canActivate: [AuthGuardService]},
+  { path: 'profile', component: ProfilePage, /*canActivate: [AuthGuardService]*/ }
 ];
 
 @NgModule({

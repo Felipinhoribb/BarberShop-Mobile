@@ -9,39 +9,49 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="semscroll">
+<ion-content>
 
-  <ion-img src="/assets/images/barber shop branca.png" style="width:80% ;display: block;margin-left: auto;margin-right: auto;" ></ion-img>
+  <ion-img src="/assets/images/barber shop branca.png"
+    style="width:80% ;display: block;margin-left: auto;margin-right: auto;"></ion-img>
 
-  <ion-card class="cardsembordainferior" style="border-radius:5px 5px 0px 0px;">
+  <form #form=ngForm [formGroup]="loginForm" (submit)="login()">
 
-    <!--<ion-card-header>
-      <ion-card-title>Login</ion-card-title>
-    </ion-card-header>-->
-    <ion-card-content class="sembordainferior" >
-
-      <ion-item class="bordaredonda">
-        <ion-icon slot="start"  name="ios-contact"></ion-icon>
-        <ion-label position="floating">Login</ion-label>
-        <ion-input type="text" [(ngModel)]="email"></ion-input>
-      </ion-item>
-
-      <br>
-
-      <ion-item class="bordaredonda">
-        <ion-icon slot="start"  name="ios-lock"></ion-icon>
-        <ion-label position="floating">Senha</ion-label>
-        <ion-input type="password" [(ngModel)]="password"></ion-input>
-      </ion-item>
+    <ion-card style="border-radius:5px 5px 0px 0px;">
 
       <ion-card-content>
-        <a [routerLink]="['/register']">Não tem uma conta? Cadastre-se</a>
+
+        <ion-item>
+          <ion-icon slot="start" name="ios-contact"></ion-icon>
+          <ion-label position="floating">Login</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+          <small class="error-message"
+            *ngIf="(loginForm.get('email').errors?.required || loginForm.get('email').errors?.email) && form.submitted">
+            Por favor, informe o email!
+          </small>
+        </ion-item>
+
+        <br>
+
+        <ion-item>
+          <ion-icon slot="start" name="ios-lock"></ion-icon>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+          <small class="error-message"
+            *ngIf="(loginForm.get('password').errors?.required || loginForm.get('password').errors?.minlength || loginForm.get('password').errors?.maxlength) && form.submitted">
+            Por favor, informe a senha!
+          </small>
+        </ion-item>
+
+        <ion-card-content>
+          <a [routerLink]="['/register']">Não tem uma conta? Cadastre-se</a>
+        </ion-card-content>
+
       </ion-card-content>
 
-    </ion-card-content>
+    </ion-card>
 
-  </ion-card>
+    <ion-button type="submit" color="danger" expand="full">Entrar</ion-button>
 
-  <ion-button color="danger" expand="full" (click)="login()">Entrar</ion-button>
-  
+  </form>
+
 </ion-content>

@@ -27,6 +27,7 @@ export class AppointmentPage implements OnInit {
 
   private listBarbers: Array<Barber> = [];
   private listServices = [];
+  private listSexService = [];
 
   private barberSelected;
   private serviceSelected;
@@ -73,6 +74,7 @@ export class AppointmentPage implements OnInit {
 
     this.listBarbers = barberService.getListBarbers();
     this.listServices = servicesService.getListService();
+
   }
 
   ngOnInit() {
@@ -88,10 +90,8 @@ export class AppointmentPage implements OnInit {
 
   updateImg(id) {
     for (const barber of this.listBarbers) {
-      //console.log(id + '===' + barber.idBarber);
       if (id === barber.idBarber) {
         this.barberAvatar = barber.img;
-        //console.log(this.barberAvatar.toString());
       }
     }
   }
@@ -106,7 +106,6 @@ export class AppointmentPage implements OnInit {
       this.objAppointment.img = this.barber.img;
 
       this.objAppointment.date = moment(this.objAppointment.date).format('DD/MM/YYYY');
-      //this.objAppointment.time = moment(this.objAppointment.time).format("HH:mm");
 
       this.appointmentService.editAppointment(this.objAppointment.idAppointment, this.objAppointment);
       this.router.navigateByUrl('/list');
@@ -151,15 +150,36 @@ export class AppointmentPage implements OnInit {
     return item;
   }
 
-  async femaleServiceAlert() {
+  alterServices(event) {
+    const service = event.detail.value;
+
+    this.listSexService.splice(0, 7);
+
+    if(service == 1) {
+      for(const serv of this.listServices) {
+        if(serv.type == "male") {
+          this.listSexService.push(serv);
+        }
+      }
+    } else {
+      for(const serv of this.listServices) {
+        if(serv.type == "female") {
+          //listar apenas a barbeira que realiza o serviço feminino
+          this.listSexService.push(serv);
+        }
+      }
+    }
+  }
+
+  async sexAlert() {
     const alert = await this.alert.create({
       cssClass: 'my-custom-class',
       header: 'Apagar',
-      message: 'O(s) serviço(s) solicitado(s) só pode(m) ser feito(s) pela profissional Ana Cristina!',
+      message: 'Selecione o gênero do serviço relativo ao sexo!',
       buttons: [
         {
           text: 'Confirmar',
-          role: 'cancel',
+          role: 'OK',
           cssClass: 'secondary',
           handler: (blah) => {
             //console.log('Confirm: blah');

@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
 
   <ion-card style="border-radius:5px 5px 0px 0px;">
 
@@ -18,6 +18,21 @@
     </ion-card-header>
 
     <ion-card-content>
+
+      <br>
+      <ion-toolbar color="black">
+        <ion-segment (ionChange)="alterServices($event)" color="danger" value="call">
+          <ion-segment-button value="1">
+            Masculino
+            <ion-icon name="ios-man"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="2">
+            Feminino
+            <ion-icon name="ios-woman"></ion-icon>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+      <br>
 
       <ion-item color="black">
         <ion-label position="stacked">Profissional</ion-label>
@@ -37,8 +52,8 @@
       <ion-item color="black">
         <ion-label position="stacked">Data</ion-label>
         <ion-icon slot="start" name="ios-calendar"></ion-icon>
-        <ion-datetime [(ngModel)]="objAppointment.date" display-format="DD/MMMM/YYYY"
-          min="2020-01-01" max="2020-12-31" placeholder="Selecione a Data" cancel-text="Cancelar" done-text="Confirmar">
+        <ion-datetime [(ngModel)]="objAppointment.date" display-format="DD/MMMM/YYYY" min="2020-01-01" max="2020-12-31"
+          placeholder="Selecione a Data" cancel-text="Cancelar" done-text="Confirmar">
         </ion-datetime>
       </ion-item>
 
@@ -56,7 +71,7 @@
         <ion-icon slot="start" name="ios-cut"></ion-icon>
         <ion-select [(ngModel)]="objAppointment.idService" ok-text="Confirmar" cancel-text="Cancelar"
           placeholder="Selecione o Serviço">
-          <ion-select-option *ngFor="let service of listServices" value="{{service.idService}}">{{service.name}}
+          <ion-select-option *ngFor="let service of listSexService" value="{{service.idService}}">{{service.name}}
           </ion-select-option>
         </ion-select>
       </ion-item>
