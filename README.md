@@ -32,7 +32,7 @@ Ionic.
 * Páginas principal e Sobre contendo uma descrição da barbearia.
 
 
-## Authors
+## Autores
 
 * **Luis Felipe**
 
