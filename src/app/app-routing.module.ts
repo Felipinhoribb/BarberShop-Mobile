@@ -19,7 +19,7 @@ import { ProfilePage } from './pages/profile/profile.page'
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomePage},
-  { path: 'list', component: ListPage, canActivate: [AuthGuardService]},
+  { path: 'list', component: ListPage, /*canActivate: [AuthGuardService]*/},
   { path: 'messenger', component: MessengerPage, canActivate: [AuthGuardService]},
   { path: 'about', component: SingleImageViewPage},
   { path: 'login', component: LoginPage },
@@ -28,9 +28,9 @@ const routes: Routes = [
   { path: 'barbers', component: BarbersPage },
   { path: 'details/:id', component: DetailsPage },
   { path: 'register', component: RegisterPage },
-  { path: 'appointment/:id', component: AppointmentPage, canActivate: [AuthGuardService]},
+  { path: 'appointment/:id', component: AppointmentPage, /*canActivate: [AuthGuardService]*/},
   { path: 'dashboard', component: DashboardPage, canActivate: [AuthGuardService]},
-  { path: 'profile', component: ProfilePage, /*canActivate: [AuthGuardService]*/ }
+  { path: 'profile', component: ProfilePage, /*canActivate: [AuthGuardService]*/}
 ];
 
 @NgModule({

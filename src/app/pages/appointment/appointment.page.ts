@@ -149,45 +149,4 @@ export class AppointmentPage implements OnInit {
 
     return item;
   }
-
-  alterServices(event) {
-    const service = event.detail.value;
-
-    this.listSexService.splice(0, 7);
-
-    if(service == 1) {
-      for(const serv of this.listServices) {
-        if(serv.type == "male") {
-          this.listSexService.push(serv);
-        }
-      }
-    } else {
-      for(const serv of this.listServices) {
-        if(serv.type == "female") {
-          //listar apenas a barbeira que realiza o serviço feminino
-          this.listSexService.push(serv);
-        }
-      }
-    }
-  }
-
-  async sexAlert() {
-    const alert = await this.alert.create({
-      cssClass: 'my-custom-class',
-      header: 'Apagar',
-      message: 'Selecione o gênero do serviço relativo ao sexo!',
-      buttons: [
-        {
-          text: 'Confirmar',
-          role: 'OK',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            //console.log('Confirm: blah');
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
 }

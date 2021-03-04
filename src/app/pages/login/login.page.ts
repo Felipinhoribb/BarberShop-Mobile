@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 import { NavController } from '@ionic/angular'
 
-import { ReactiveFormsModule,FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { AlertController } from '@ionic/angular';
 import { from } from 'rxjs';
 
@@ -14,18 +14,15 @@ import { from } from 'rxjs';
 })
 export class LoginPage implements OnInit {
 
-  // public email: string = '';
-  // public password: string = '';
   public logMenu: boolean = false;
 
-  loginForm : FormGroup;
+  loginForm: FormGroup;
 
   constructor(private authentication: AuthenticationService,
     private router: Router,
     private alert: AlertController,
     private formBuilder: FormBuilder,
-    private nav: NavController) {
-  }
+    private nav: NavController) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -34,6 +31,7 @@ export class LoginPage implements OnInit {
     });
   }
 
+  //Método chamado para reiniciar o ciclo de vida
   ionViewWillEnter() {
     this.authentication.mostrarMenu.emit(false);
     this.authentication.signOut().then(() => {
@@ -44,10 +42,9 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    
 
     const dataFormLog = this.loginForm.value
-    
+
     this.authentication.signIn(dataFormLog.email, dataFormLog.password).then((data) => {
 
       this.authentication.setUserLog(true);
@@ -55,14 +52,12 @@ export class LoginPage implements OnInit {
 
       this.router.navigate(['/list']);
 
-      //this.nav.navigateRoot('/list');
-
     }).catch((erro) => {
       if (this.loginForm.invalid || this.loginForm.pending) {
         return;
       } else {
         console.log('Erro ao realizar Login: ' + erro);
-        this.SignInFailed();
+        //this.SignInFailed();
       }
     });
   }
@@ -71,7 +66,7 @@ export class LoginPage implements OnInit {
     return this.authentication.signOut();
   }
 
-  async SignInFailed() {
+  /*async SignInFailed() {
     const alert = await this.alert.create({
       cssClass: 'my-custom-class',
       header: 'Login',
@@ -89,7 +84,7 @@ export class LoginPage implements OnInit {
     });
 
     await alert.present();
-  }
+  }*/
 
   showMenu() {
     return this.logMenu;

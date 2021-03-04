@@ -89,13 +89,13 @@ export class AppComponent {
       visible: false
     },
 
-    {
+    /*{
       title: 'Mensagens',
       component: MessengerPage,
       url: '/messenger',
       icon: 'chatboxes',
       visible: false
-    },
+    },*/
 
     {
       title: 'Contato',

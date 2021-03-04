@@ -42,7 +42,7 @@
             <ion-input type="password" formControlName="password"></ion-input>
             <small class="error-message"
               *ngIf="(userForm.get('password').errors?.required || userForm.get('password').errors?.minlength || userForm.get('password').errors?.maxlength) && form.submitted">
-              Por favor, informe a senha!
+              Por favor, informe a senha! (mínimo 8 dígitos)
             </small>
           </ion-item>
 

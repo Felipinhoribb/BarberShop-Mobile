@@ -1,5 +1,5 @@
 import { TodoModalComponent } from './pages/todo-modal/todo-modal.component';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,6 +34,11 @@ import { from } from 'rxjs';
 import { DashboardPage } from './pages/dashboard/dashboard.page';
 import { ProfilePage } from './pages/profile/profile.page'
 
+import localePt from '@angular/common/locales/pt'
+import { registerLocaleData } from '@angular/common';
+import { CustomPipePipe } from './pipes/custom-pipe.pipe'
+registerLocaleData(localePt);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +54,8 @@ import { ProfilePage } from './pages/profile/profile.page'
     RegisterPage, 
     AppointmentPage,
     DashboardPage,
-    ProfilePage
+    ProfilePage,
+    CustomPipePipe
   ],
 
   entryComponents: [ 
@@ -82,6 +88,7 @@ import { ProfilePage } from './pages/profile/profile.page'
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: LOCALE_ID, useValue: "pt-BR"},
     AngularFireAuthGuard
   ],
   bootstrap: [AppComponent]

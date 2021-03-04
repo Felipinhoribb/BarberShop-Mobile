@@ -39,7 +39,6 @@ export class RegisterPage implements OnInit {
   register() {
 
     if(this.userForm.invalid || this.userForm.pending) {
-      console.log("Formulário com campos incompletos")
       return;
     }
 
